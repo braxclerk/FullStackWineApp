@@ -1,0 +1,38 @@
+<div *ngIf="wine" class="wine-detail">
+    <h2>{{ wine.name }} - Details</h2>
+    <div>
+      <label><strong>ID:</strong></label>
+      <span>{{ wine.id }}</span>
+    </div>
+    <div>
+      <label><strong>Name:</strong></label>
+      <span>{{ wine.name }}</span>
+    </div>
+    <div>
+      <label><strong>Color:</strong></label>
+      <span>{{ wine.color }}</span>
+    </div>
+    <div>
+      <label><strong>Taste:</strong></label>
+      <span>{{ wine.taste }}</span>
+    </div>
+    <div>
+      <label><strong>Country:</strong></label>
+      <span>{{ wine.country }}</span>
+    </div>
+    <div>
+      <label><strong>Age:</strong></label>
+      <span>{{ wine.age }}</span>
+    </div>
+    <div>
+      <label><strong>Description:</strong></label>
+      <span>{{ wine.description }}</span>
+    </div>
+  
+    <!-- Buttons for navigation and actions -->
+    <div class="actions">
+      <button (click)="goBack()">Back</button>
+      <button (click)="editWine()">Edit</button>
+    </div>
+  </div>
+  
