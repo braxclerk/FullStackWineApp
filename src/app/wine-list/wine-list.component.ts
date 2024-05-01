@@ -20,13 +20,16 @@ import { WineService } from '../services/wine.service';  // Ensure path is corre
 export class WineListComponent implements OnInit {
   wines: Wine[] = [];
 
-  constructor(private wineService: WineService) {this.wines = [
-  { id: 1, name: 'Chardonnay', color: 'Yellow', country: 'France', description: 'A popular white wine.', age: 5 },
-  { id: 2, name: 'Merlot', color: 'Red', country: 'USA', description: 'A smooth red wine.', age: 3 }
-  // Add more wine data as needed
-]; }
+  constructor(private wineService: WineService) {
+    this.wines = [
+      { id: 1, name: 'Chardonnay', color: 'Yellow', country: 'France', description: 'A popular white wine.', age: 5 },
+      { id: 2, name: 'Merlot', color: 'Red', country: 'USA', description: 'A smooth red wine.', age: 3 }
+      // Add more wine data as needed
+    ];
+    console.log("HELLO")
+  }
   ngOnInit() {
-    console.log("Im here"); 
+    console.log("ON INIT")
     this.wineService.getWines().subscribe({
       next: (data) => {
         this.wines = data;
