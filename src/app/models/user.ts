@@ -5,10 +5,5 @@ export class User {
     email?: string;
     dob?: Date;
     country?: string;
-    role?: UserRole;  // Assuming UserRole is an enum defined elsewhere
-}
-
-export enum UserRole {
-    Admin,
-    RegularUser
+    role?: string;  // Assuming UserRole is an enum defined elsewhere
 }

@@ -1,0 +1,15 @@
+@for (wine of wines; track $index) {
+    <app-wine [wine]="wine"
+    [id]="wine.id"
+    [name]="wine.name"
+    [color]="wine.color"
+    [taste]="wine.taste"
+    [country]="wine.country"
+    [description]="wine.description"
+    [age]="wine.age"
+    (delete)="handleDelete(wine.id)"  
+    (edit)="handleEdit(wine.id)">  
+    ></app-wine>
+    }
+
+

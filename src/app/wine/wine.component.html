@@ -1,2 +1,14 @@
-
-<p>wine works!</p>
+<!-- src/app/wine/wine.component.html -->
+<div>
+    <div>ID: <span>{{ id }}</span></div>
+    <div>Name: <span>{{ name }}</span></div>
+    <div>Color: <span>{{ color }}</span></div>
+    <div>Taste: <span>{{ taste }}</span></div>
+    <div>Country: <span>{{ country }}</span></div>
+    <div>Description: <span>{{ description }}</span></div>
+    <div>Age: <span>{{ age }}</span></div>
+    <div>
+        <button (click)="onDelete()">Delete</button>
+        <button (click)="onEdit()">Edit</button>
+    </div>
+</div>

@@ -1,0 +1,24 @@
+<!-- src/app/toolbar/toolbar.component.html -->
+
+<mat-toolbar color="primary">
+    <button [matMenuTriggerFor]="wineMenu" mat-icon-button>
+      <mat-icon>menu</mat-icon>
+    </button>
+    <mat-menu #wineMenu="matMenu">
+      <button mat-menu-item routerLink="/wine-list">Wine List</button>
+      <button mat-menu-item routerLink="/add-wine">Add Wine</button>
+    </mat-menu>
+    <span>Wine Application</span>
+    <button mat-menu-item routerLink="/wine-list">Login</button>
+    <span class="example-spacer"></span>  <!-- Ensure you have the CSS for this -->
+  </mat-toolbar>  
+<!-- src/app/app.component.html -->
+
+<router-outlet></router-outlet>
+
+
+
+<!--<router-outlet> serves as the injection point for rendering the components based on the active route in your Angular application. It's essential for any Angular app that uses routing to manage navigation and views. -->
+<!-- Routing Management: Angular uses a routing module to handle navigation between different components in an application. This module is configured with routes, which are mappings of URL paths to components.
+View Placement: When a user navigates to a particular path, the Angular Router looks up the route configuration and loads the corresponding component. The <router-outlet> directive is the spot in the template where this loaded component's template will be displayed.
+Multiple Outlets: You can have multiple <router-outlet> tags in a single application, each named differently, to manage more complex layouts. -->

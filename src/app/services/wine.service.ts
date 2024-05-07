@@ -8,7 +8,7 @@ import { Wine } from '../models/wine';
   providedIn: 'root'
 })
 export class WineService {
-  baseUrl: string = 'https://localhost:7196/api';
+  private baseUrl: string = 'https://localhost:7196/api/Wines'; // Include '/Wines' here
 
   constructor(private http: HttpClient) { }
 
@@ -17,18 +17,18 @@ export class WineService {
   }
 
   getWineById(id: number): Observable<Wine> {
-    return this.http.get<Wine>(`'https://localhost:7196/api/Wines'/${id}`);
+    return this.http.get<Wine>(`https://localhost:7196/api/Wines/${id}`);
   }
 
   updateWine(wine: Wine): Observable<Wine> {
-    return this.http.put<Wine>(`'https://localhost:7196/api/Wines'/${wine.id}`, wine);
+    return this.http.put<Wine>(`https://localhost:7196/api/Wines`, wine);
   }
 
   addWine(wine: Wine): Observable<Wine> {
     return this.http.post<Wine>('https://localhost:7196/api/Wines', wine);
   }
 
-  deleteWine(id: number): Observable<{}> {
-    return this.http.delete('https://localhost:7196/api/Wines' + id);
+  deleteWine(id: number): Observable<string> { // Change return type if you expect a string response
+    return this.http.delete<string>(`${this.baseUrl}/${id}`, { responseType: 'text' as 'json' });
   }
 }
