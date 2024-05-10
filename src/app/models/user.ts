@@ -5,5 +5,7 @@ export class User {
     email?: string;
     dob?: Date;
     country?: string;
-    role?: string;  // Assuming UserRole is an enum defined elsewhere
+    role?: string; 
+    password?: string;
+    username?: string;
 }

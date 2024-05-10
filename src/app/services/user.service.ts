@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../models/user';
 
@@ -7,48 +7,31 @@ import { User } from '../models/user';
   providedIn: 'root'
 })
 export class UserService {
+  updateUser(user: User) {
+    throw new Error('Method not implemented.');
+  }
+  authHeader: string = "Basic am9obi5kb2U6VmVyeVNlY3JldCE=";
   private userUrl: string = 'https://localhost:7196/api/Users';
-  private adminUrl: string = 'https://localhost:7196/api/Admin';
 
   constructor(private http: HttpClient) { }
 
-  // General user operations
   getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(this.userUrl);
+    const headers = new HttpHeaders({ 'Authorization': this.authHeader });
+    return this.http.get<User[]>(this.userUrl, { headers: headers });
   }
 
   getUserById(id: number): Observable<User> {
-    return this.http.get<User>(`${this.userUrl}/${id}`);
+    const headers = new HttpHeaders({ 'Authorization': this.authHeader });
+    return this.http.get<User>(`${this.userUrl}/${id}`, { headers: headers });
   }
 
   addUser(user: User): Observable<User> {
-    return this.http.post<User>(this.userUrl, user);
+    const headers = new HttpHeaders({ 'Authorization': this.authHeader });
+    return this.http.post<User>(this.userUrl, user, { headers: headers });
   }
 
-  // Admin-specific methods
-  // Assuming that the backend uses the same base URL with an admin prefix for admin operations
-  getAllUsers(): Observable<User[]> {
-    return this.http.get<User[]>(`${this.adminUrl}/Users`);
-  }
-
-  updateUser(user: User): Observable<User> {
-    return this.http.put<User>(`${this.adminUrl}/Users/${user.id}`, user);
-  }
-
-  deleteUser(id: number): Observable<{}> {
-    return this.http.delete(`${this.adminUrl}/Users/${id}`);
-  }
-
-  activateUser(id: number): Observable<User> {
-    return this.http.patch<User>(`${this.adminUrl}/ActivateUser/${id}`, {});
-  }
-
-  deactivateUser(id: number): Observable<User> {
-    return this.http.patch<User>(`${this.adminUrl}/DeactivateUser/${id}`, {});
-  }
-
-  // Example method to update user roles, assuming such an endpoint exists
-  updateUserRole(userId: number, role: string): Observable<User> {
-    return this.http.put<User>(`${this.adminUrl}/Users/${userId}/role`, { role });
+  deleteUser(id: number): Observable<string> {
+    const headers = new HttpHeaders({ 'Authorization': this.authHeader });
+    return this.http.delete<string>(`${this.userUrl}/${id}`, { headers: headers, responseType: 'text' as 'json' });
   }
 }

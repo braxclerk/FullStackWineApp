@@ -1,3 +1,16 @@
-.mat-color {
-  background-color: aqua;
+.mat-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mat-toolbar span {
+  flex-grow: 1;
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.mat-toolbar button {
+  margin: 0 8px;
 }

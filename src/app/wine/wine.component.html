@@ -1,14 +1,13 @@
-<!-- src/app/wine/wine.component.html -->
-<div>
-    <div>ID: <span>{{ id }}</span></div>
-    <div>Name: <span>{{ name }}</span></div>
-    <div>Color: <span>{{ color }}</span></div>
-    <div>Taste: <span>{{ taste }}</span></div>
-    <div>Country: <span>{{ country }}</span></div>
-    <div>Description: <span>{{ description }}</span></div>
-    <div>Age: <span>{{ age }}</span></div>
-    <div>
-        <button (click)="onDelete()">Delete</button>
-        <button (click)="onEdit()">Edit</button>
-    </div>
-</div>
+<!-- wine.component.html -->
+<div *ngIf="wine" class="wine-container">
+    <div><strong>ID:</strong> <span>{{ wine.id }}</span></div>
+    <div><strong>Name:</strong> <span>{{ wine.name }}</span></div>
+    <div><strong>Color:</strong> <span>{{ wine.color }}</span></div>
+    <div><strong>Taste:</strong> <span>{{ wine.taste }}</span></div>
+    <div><strong>Country:</strong> <span>{{ wine.country }}</span></div>
+    <div><strong>Description:</strong> <span>{{ wine.description }}</span></div>
+    <div><strong>Age:</strong> <span>{{ wine.age }}</span></div>
+    <button mat-button color="warn" (click)="deleteWine()">Delete</button>
+    <button mat-button color="primary" (click)="editWine()">Edit</button>
+  </div>
+  

@@ -1,0 +1,25 @@
+.wine-list-container {
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .wine-item {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .wine-details {
+    flex-grow: 1;
+  }
+  
+  .action-buttons {
+    display: flex;
+    gap: 10px;
+  }
+  

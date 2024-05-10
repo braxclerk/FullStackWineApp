@@ -1,34 +1,43 @@
 // src/app/services/wine.service.ts
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Wine } from '../models/wine';
 
 @Injectable({
   providedIn: 'root'
+  
 })
+
 export class WineService {
-  private baseUrl: string = 'https://localhost:7196/api/Wines'; // Include '/Wines' here
+  authHeader: string = "Basic am9obi5kb2U6VmVyeVNlY3JldCE=";
+  private baseUrl: string = 'https://localhost:7196/api/Wines'; 
 
   constructor(private http: HttpClient) { }
 
   getWines(): Observable<Wine[]> {
-    return this.http.get<Wine[]>('https://localhost:7196/api/Wines');
+    const headers = new HttpHeaders({ 'Authorization': this.authHeader });
+    return this.http.get<Wine[]>(this.baseUrl, { headers: headers });
   }
 
   getWineById(id: number): Observable<Wine> {
-    return this.http.get<Wine>(`https://localhost:7196/api/Wines/${id}`);
+    const headers = new HttpHeaders({ 'Authorization': this.authHeader });
+    return this.http.get<Wine>(`${this.baseUrl}/${id}`, { headers: headers });
   }
 
   updateWine(wine: Wine): Observable<Wine> {
-    return this.http.put<Wine>(`https://localhost:7196/api/Wines`, wine);
+    const headers = new HttpHeaders({ 'Authorization': this.authHeader });
+    const url = `${this.baseUrl}/${wine.id}`;
+    return this.http.put<Wine>(url, wine, { headers: headers });
   }
 
   addWine(wine: Wine): Observable<Wine> {
-    return this.http.post<Wine>('https://localhost:7196/api/Wines', wine);
+    const headers = new HttpHeaders({ 'Authorization': this.authHeader });
+    return this.http.post<Wine>(this.baseUrl, wine, { headers: headers });
   }
 
-  deleteWine(id: number): Observable<string> { // Change return type if you expect a string response
-    return this.http.delete<string>(`${this.baseUrl}/${id}`, { responseType: 'text' as 'json' });
+  deleteWine(id: number): Observable<string> {
+    const headers = new HttpHeaders({ 'Authorization': this.authHeader });
+    return this.http.delete<string>(`${this.baseUrl}/${id}`, { headers: headers, responseType: 'text' as 'json' });
   }
 }

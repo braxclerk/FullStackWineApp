@@ -1,1 +1,51 @@
-<p>wine-edit works!</p>
+<form [formGroup]="wineForm" (ngSubmit)="saveWine()" class="wine-form">
+  <mat-form-field appearance="fill" class="wine-form-field">
+    <mat-label>ID</mat-label>
+    <input matInput formControlName="id">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="wine-form-field">
+    <mat-label>Name</mat-label>
+    <input matInput formControlName="name">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="wine-form-field">
+    <mat-label>Color</mat-label>
+    <input matInput formControlName="color">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="wine-form-field">
+    <mat-label>Taste</mat-label>
+    <input matInput type="number" formControlName="taste">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="wine-form-field">
+    <mat-label>Country</mat-label>
+    <input matInput formControlName="country">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="wine-form-field">
+    <mat-label>Description</mat-label>
+    <textarea matInput formControlName="description"></textarea>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="wine-form-field">
+    <mat-label>Age</mat-label>
+    <input matInput type="number" formControlName="age">
+  </mat-form-field>
+
+  <!-- <mat-form-field appearance="fill">
+    <mat-label>User</mat-label>
+    <mat-select formControlName="userId">
+      <mat-option *ngFor="let user of users" [value]="user.id">
+        {{ user.email }} 
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+   -->
+  <!-- <select [(ngModel)]="wine.userId" name="userId">
+    <option *ngFor="let user of users" [value]="user.id">{{ user.email }}</option>
+    </select> -->
+
+  <button mat-raised-button color="primary" type="submit" [disabled]="!wineForm.valid">Save Changes</button>
+</form>

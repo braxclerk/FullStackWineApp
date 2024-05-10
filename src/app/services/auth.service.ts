@@ -1,20 +1,18 @@
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-
+import { Observable, catchError, throwError } from 'rxjs';
+import { Login } from '../models/login';
 @Injectable({
-  providedIn: 'root'
+providedIn: 'root'
 })
 export class AuthService {
-  private baseUrl: string = 'https://localhost:7196/api';
-
-  constructor(private http: HttpClient) { }
-
-  login(credentials: { username: string, password: string }): Observable<any> {
-    return this.http.post(`${this.baseUrl}/Auth/login`, credentials);
-  }
-
-  register(user: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}/Auth/register`, user);
-  }
+baseUrl: string = "http://localhost:7196/api";
+constructor(private http: HttpClient) {
 }
+authenticate(username: String, password: String): Observable<Login> {
+  return this.http.post<Login>('http://localhost:7196/api/Login', {
+  username: username,
+  password: password
+  });
+  }
+  }

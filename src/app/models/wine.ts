@@ -6,5 +6,6 @@ export class Wine {
     country?: string;
     description?: string;
     age?: number;
+    userId?: number;
   }
   

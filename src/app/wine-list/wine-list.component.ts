@@ -4,7 +4,9 @@ import { WineService } from '../services/wine.service';
 import { Wine } from '../models/wine';
 import { WineComponent } from '../wine/wine.component';
 import { CommonModule } from '@angular/common';
-
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-wine-list',
@@ -19,6 +21,11 @@ export class WineListComponent implements OnInit {
   constructor(private wineService: WineService, private router: Router) {}
 
   ngOnInit(): void {
+    //if not authenticated reroutes you to login page
+    if (this.wineService.authHeader == null) {
+      this.router.navigate(['/login']);
+      return;
+      }
     this.loadWines();
   }
 
@@ -26,23 +33,10 @@ export class WineListComponent implements OnInit {
     this.wineService.getWines().subscribe(wines => this.wines = wines);
   }
 
-handleDelete(id: number | undefined): void {
-  if (!id) {
-    console.error("Attempted to delete a wine with undefined ID.");
-    return;
+  viewWine(id: number | undefined): void {
+    this.router.navigate(['/wine', id]);
   }
-  
-  this.wineService.deleteWine(id).subscribe({
-    next: () => (this.wines = this.wines.filter(wine => wine.id !== id), console.log('Wine successfully deleted')),
-    error: error => console.error('Failed to delete wine:', error)
-  });
-}
-  handleEdit(id: number | undefined): void {
-    if (id !== undefined) {  // Ensure id is defined before navigating
-      this.router.navigate(['/edit-wine', id.toString()]); // Convert to string for safe navigation
-    } else {
-      console.error("Attempted to edit a wine with undefined ID.");
-    }
-  }
+
+
   
 }

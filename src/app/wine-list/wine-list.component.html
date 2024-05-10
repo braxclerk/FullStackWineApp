@@ -1,15 +1,17 @@
-@for (wine of wines; track $index) {
-    <app-wine [wine]="wine"
-    [id]="wine.id"
-    [name]="wine.name"
-    [color]="wine.color"
-    [taste]="wine.taste"
-    [country]="wine.country"
-    [description]="wine.description"
-    [age]="wine.age"
-    (delete)="handleDelete(wine.id)"  
-    (edit)="handleEdit(wine.id)">  
-    ></app-wine>
-    }
-
-
+<div class="wine-list-container">
+    <h1>Wine List</h1>
+    <div *ngFor="let wine of wines" class="wine-item" (click)="viewWine(wine.id)">
+      <div class="wine-details">
+        <h2>{{ wine.name }}</h2>
+        <p><strong>Country:</strong> {{ wine.country }}</p>
+        <p><strong>Country:</strong> {{ wine.color }}</p>
+        <p><strong>Description:</strong> {{ wine.description }}</p>
+        <p><strong>Rating:</strong> {{ wine.taste }}</p>
+      </div>
+      <div class="action-buttons">
+       
+      </div>
+    </div>
+  </div>
+  
+  

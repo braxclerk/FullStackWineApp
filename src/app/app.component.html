@@ -1,21 +1,20 @@
-<!-- src/app/toolbar/toolbar.component.html -->
-
 <mat-toolbar color="primary">
-    <button [matMenuTriggerFor]="wineMenu" mat-icon-button>
-      <mat-icon>menu</mat-icon>
-    </button>
-    <mat-menu #wineMenu="matMenu">
-      <button mat-menu-item routerLink="/wine-list">Wine List</button>
-      <button mat-menu-item routerLink="/add-wine">Add Wine</button>
-    </mat-menu>
-    <span>Wine Application</span>
-    <button mat-menu-item routerLink="/wine-list">Login</button>
-    <span class="example-spacer"></span>  <!-- Ensure you have the CSS for this -->
-  </mat-toolbar>  
-<!-- src/app/app.component.html -->
+  <button [matMenuTriggerFor]="wineMenu" mat-icon-button aria-label="Menu">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <mat-menu #wineMenu="matMenu">
+    <button mat-menu-item routerLink="/wine-list">Wine Dashboard</button>
+    <button mat-menu-item routerLink="/add-wine">Add Wine</button>
+    <button mat-menu-item routerLink="/user-list">Users Dashboard</button>
+  </mat-menu>
+  <span>Wine Application</span>
+  <div>
+    <button mat-button routerLink="/login">Login</button>
+    <mat-slide-toggle>Toggle</mat-slide-toggle>
+  </div>
+</mat-toolbar>  
 
 <router-outlet></router-outlet>
-
 
 
 <!--<router-outlet> serves as the injection point for rendering the components based on the active route in your Angular application. It's essential for any Angular app that uses routing to manage navigation and views. -->
