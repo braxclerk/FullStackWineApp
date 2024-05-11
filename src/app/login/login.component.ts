@@ -17,14 +17,16 @@ export class LoginComponent {
   constructor(public auth: AuthService, private router: Router) {}
   
 
-  login() {
+  async login() {
     if (this.username != null && this.password != null) {
-    this.auth.authenticate(this.username, this.password).subscribe((auth) => {
+      const authHeader = await this.auth.authenticate(this.username, this.password)
+    authHeader.subscribe((auth) => {
     if (auth != null) {
     // Save to the local storage
     localStorage.setItem('headerValue', auth.headerValue);
+    localStorage.setItem('userId', auth.userId.toString());
     this.authenticated = true;
-    this.router.navigate(['students'])
+    this.router.navigate(['user'])
     }
     });
     }

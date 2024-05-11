@@ -16,22 +16,22 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   getUsers(): Observable<User[]> {
-    const headers = new HttpHeaders({ 'Authorization': this.authHeader });
+    const headers = new HttpHeaders({ 'Authorization': this.authHeader, 'Access-Control-Allow-Headers': 'Content-Type','Access-Control-Allow-Origin': '*' });
     return this.http.get<User[]>(this.userUrl, { headers: headers });
   }
 
   getUserById(id: number): Observable<User> {
-    const headers = new HttpHeaders({ 'Authorization': this.authHeader });
+    const headers = new HttpHeaders({ 'Authorization': this.authHeader, 'Access-Control-Allow-Headers': 'Content-Type','Access-Control-Allow-Origin': '*' });
     return this.http.get<User>(`${this.userUrl}/${id}`, { headers: headers });
   }
 
   addUser(user: User): Observable<User> {
-    const headers = new HttpHeaders({ 'Authorization': this.authHeader });
+    const headers = new HttpHeaders({ 'Authorization': this.authHeader, 'Access-Control-Allow-Headers': 'Content-Type','Access-Control-Allow-Origin': '*' });
     return this.http.post<User>(this.userUrl, user, { headers: headers });
   }
 
   deleteUser(id: number): Observable<string> {
-    const headers = new HttpHeaders({ 'Authorization': this.authHeader });
+    const headers = new HttpHeaders({ 'Authorization': this.authHeader, 'Access-Control-Allow-Headers': 'Content-Type','Access-Control-Allow-Origin': '*' });
     return this.http.delete<string>(`${this.userUrl}/${id}`, { headers: headers, responseType: 'text' as 'json' });
   }
 }

@@ -8,7 +8,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { MatOptionModule } from '@angular/material/core';
+import { MatOption } from '@angular/material/core';
 import { UserService } from '../services/user.service';
 
 
@@ -17,7 +17,7 @@ import { UserService } from '../services/user.service';
   templateUrl: './wine-edit.component.html',
   styleUrls: ['./wine-edit.component.css'],
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, FormsModule, RouterModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatOptionModule]
+  imports: [CommonModule, ReactiveFormsModule, FormsModule, RouterModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatOption]
 })
 export class WineEditComponent implements OnInit {
   //TWO WAY DATA BINDING: initalizes wine object, used to store data that will be edits.
