@@ -13,7 +13,7 @@ import { WineComponent } from './wine/wine.component';
 import { WineEditComponent } from './wine-edit/wine-edit.component';
 import { AddWineComponent } from './add-wine/add-wine.component';
 import { LoginComponent } from './login/login.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+
 import { MatSlideToggle } from '@angular/material/slide-toggle';
 import { UserComponent } from './user/user.component';
 
@@ -38,7 +38,6 @@ import { UserComponent } from './user/user.component';
     RouterOutlet,
     AddWineComponent,
     LoginComponent,
-    DashboardComponent,
     UserComponent,
     WineComponent
 

@@ -8,7 +8,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { MatOption } from '@angular/material/core';
+import { MatOptionModule } from '@angular/material/core';
 import { UserService } from '../services/user.service';
 
 
@@ -17,7 +17,7 @@ import { UserService } from '../services/user.service';
   templateUrl: './wine-edit.component.html',
   styleUrls: ['./wine-edit.component.css'],
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, FormsModule, RouterModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatOption]
+  imports: [CommonModule, ReactiveFormsModule, FormsModule, RouterModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatOptionModule]
 })
 export class WineEditComponent implements OnInit {
   //TWO WAY DATA BINDING: initalizes wine object, used to store data that will be edits.
@@ -50,14 +50,16 @@ export class WineEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      const wineId = params['id'];
-      if (wineId) {
-        this.wineService.getWineById(wineId).subscribe(wine => {
-          this.wine = wine;
-        });
-      }
+        const wineId = params['id'];
+        if (wineId) {
+            this.wineService.getWineById(wineId).subscribe(wine => {
+                this.wine = wine;
+                this.wineForm.patchValue(wine);  
+            });
+        }
     });
-  }
+    this.loadUsers();  // also make sure users are loaded, so user_id can show
+}
 
   loadUsers(): void {
     this.userService.getUsers().subscribe({
@@ -69,7 +71,7 @@ export class WineEditComponent implements OnInit {
   saveWine(): void {
     if (this.wineForm.valid) {
       this.isLoading = true;
-      const updatedWine = {...this.wine, ...this.wineForm.value}; // Combines initial wine with updated values
+      const updatedWine = {...this.wine, ...this.wineForm.value}; // ccmbines initial wine with updated values
       this.wineService.updateWine(updatedWine).subscribe({
         next: () => {
           this.router.navigate(['/wine-list']);
