@@ -1,0 +1,23 @@
+.user-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .user-details h3 {
+    margin: 0;
+    color: #333;
+  }
+  
+  .user-details p {
+    margin: 5px 0;
+    color: #666;
+  }
+  
+  .actions {
+    display: flex;
+    gap: 10px;
+  }
+  

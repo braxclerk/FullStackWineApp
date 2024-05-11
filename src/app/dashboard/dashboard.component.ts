@@ -1,13 +1,19 @@
+// dashboard.component.ts
 import { Component } from '@angular/core';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
-  standalone: true,
-  imports: [MatSnackBarModule],
   templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.css'
+  styleUrls: ['./dashboard.component.css'],
+  standalone: true
 })
 export class DashboardComponent {
+
+  constructor(private router: Router) { }
+
+  navigateToLogin(): void {
+    this.router.navigate(['/login']);
+  }
 
 }

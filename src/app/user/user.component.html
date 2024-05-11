@@ -1,1 +1,8 @@
-<p>user works!</p>
+<div *ngIf="user">
+    <h1>User Details</h1>
+    <p><strong>ID:</strong> {{ user.id }}</p>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+    <p><strong>Role:</strong> {{ user.role }}</p>
+    <button mat-raised-button color="primary" (click)="editUser()">Edit</button>
+  </div>
+  

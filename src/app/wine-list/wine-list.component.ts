@@ -1,42 +1,44 @@
 import { Component, OnInit } from '@angular/core';
-import { Wine } from '../models/wine';  // Make sure this path matches where your Wine model is defined
-import { RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
+import { WineService } from '../services/wine.service';
+import { Wine } from '../models/wine';
+import { WineComponent } from '../wine/wine.component';
 import { CommonModule } from '@angular/common';
-import { MatListModule } from '@angular/material/list';
-import { WineService } from '../services/wine.service';  // Ensure path is correct
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-wine-list',
   templateUrl: './wine-list.component.html',
   styleUrls: ['./wine-list.component.css'],
   standalone: true,
-  imports: [  // Import Angular Material modules or any other components here if used in the template
-    CommonModule,  // Import CommonModule if you use *ngFor, *ngIf, etc. in your template
-    RouterModule,  // Import RouterModule if you use routerLink in your template
-    MatListModule,  // Example: Import MatListModule if you use <mat-list> in your template
-    // Add other necessary imports for UI components used within this component
-  ]
+  imports: [WineComponent, CommonModule] // Ensure you import WineComponent if it's standalone
 })
 export class WineListComponent implements OnInit {
   wines: Wine[] = [];
 
-  constructor(private wineService: WineService) {
-    this.wines = [
-      { id: 1, name: 'Chardonnay', color: 'Yellow', country: 'France', description: 'A popular white wine.', age: 5 },
-      { id: 2, name: 'Merlot', color: 'Red', country: 'USA', description: 'A smooth red wine.', age: 3 }
-      // Add more wine data as needed
-    ];
-    console.log("HELLO")
-  }
-  ngOnInit() {
-    console.log("ON INIT")
-    this.wineService.getWines().subscribe({
-      next: (data) => {
-        this.wines = data;
-      },
-      error: (error) => {
-        console.error('Error fetching wines:', error);
+
+  constructor(private wineService: WineService, private router: Router) {}
+
+  ngOnInit(): void {
+    //if not authenticated reroutes you to login page
+    if (this.wineService.authHeader == null) {
+      this.router.navigate(['/login']);
+      return;
+ 
       }
-    });
+    this.loadWines();
   }
+
+  loadWines(): void {
+    this.wineService.getWines().subscribe(wines => this.wines = wines);
+  }
+
+  viewWine(id: number | undefined): void {
+    this.router.navigate(['/wine', id]);
+  }
+
+
+  
 }

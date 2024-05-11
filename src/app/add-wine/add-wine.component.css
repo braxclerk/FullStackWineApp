@@ -1,0 +1,19 @@
+.add-wine-container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: #f9f9f9;
+  }
+  
+  .wine-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .full-width {
+    width: 100%;
+  }
+  

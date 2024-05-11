@@ -1,0 +1,27 @@
+
+.wine-container {
+    max-width: 500px;
+    margin: 20px auto;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+  
+  .mat-card-title,
+  .mat-card-subtitle {
+    color: #333;
+  }
+  
+  mat-card-content p {
+    margin-bottom: 10px;
+    line-height: 1.6;
+    color: #555;
+  }
+  
+  mat-card-actions {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  button {
+    margin-right: 8px;
+  }
+  
