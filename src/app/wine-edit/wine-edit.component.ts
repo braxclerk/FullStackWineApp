@@ -2,11 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { WineService } from '../services/wine.service';
 import { Wine } from '../models/wine';
+import { User } from '../models/user';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MatOptionModule } from '@angular/material/core';
+import { UserService } from '../services/user.service';
 
 
 @Component({
@@ -14,18 +17,19 @@ import { MatButtonModule } from '@angular/material/button';
   templateUrl: './wine-edit.component.html',
   styleUrls: ['./wine-edit.component.css'],
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, FormsModule, RouterModule, MatButtonModule, MatFormFieldModule, MatInputModule]
+  imports: [CommonModule, ReactiveFormsModule, FormsModule, RouterModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatOptionModule]
 })
 export class WineEditComponent implements OnInit {
-  //TWO WAY DATA BINDING: initalizes wine object, used to store data that will be edits. 
+  //TWO WAY DATA BINDING: initalizes wine object, used to store data that will be edits.
   wine: Wine = { id: undefined , name: '', color: '', taste: 0, country: '', description: '', age: 0, userId: 0 };
   wineForm!: FormGroup;
   isSubmitted = false;
   isLoading = false;
-  users: Users[] = [];
+  users: User[] = [];
 
   constructor(
     private wineService: WineService,
+    private userService: UserService,
     private route: ActivatedRoute,
     private router: Router,
     private fb: FormBuilder
@@ -40,8 +44,8 @@ export class WineEditComponent implements OnInit {
       age: [0, Validators.required],
       userId: [null, Validators.required]
     });
-    
-    
+
+
   }
 
   ngOnInit(): void {
@@ -80,6 +84,6 @@ export class WineEditComponent implements OnInit {
       console.error('Form is invalid or ID is missing');
     }
   }
-  
-  
+
+
 }
