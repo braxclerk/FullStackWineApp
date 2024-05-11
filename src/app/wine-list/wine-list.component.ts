@@ -18,6 +18,7 @@ import { MatButtonModule } from '@angular/material/button';
 export class WineListComponent implements OnInit {
   wines: Wine[] = [];
 
+
   constructor(private wineService: WineService, private router: Router) {}
 
   ngOnInit(): void {
@@ -25,6 +26,7 @@ export class WineListComponent implements OnInit {
     if (this.wineService.authHeader == null) {
       this.router.navigate(['/login']);
       return;
+ 
       }
     this.loadWines();
   }
