@@ -11,7 +11,7 @@ describe('WineListComponent', () => {
       imports: [WineListComponent]
     })
       .compileComponents();
-    
+
     fixture = TestBed.createComponent(WineListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
