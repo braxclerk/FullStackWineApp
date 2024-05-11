@@ -34,7 +34,7 @@
     <input matInput type="number" formControlName="age">
   </mat-form-field>
 
-  <!-- <mat-form-field appearance="fill">
+  <mat-form-field appearance="fill">
     <mat-label>User</mat-label>
     <mat-select formControlName="userId">
       <mat-option *ngFor="let user of users" [value]="user.id">
@@ -42,10 +42,10 @@
       </mat-option>
     </mat-select>
   </mat-form-field>
-   -->
-  <!-- <select [(ngModel)]="wine.userId" name="userId">
+  
+  <select [(ngModel)]="wine.userId" name="userId">
     <option *ngFor="let user of users" [value]="user.id">{{ user.email }}</option>
-    </select> -->
+    </select>
 
   <button mat-raised-button color="primary" type="submit" [disabled]="!wineForm.valid">Save Changes</button>
 </form>

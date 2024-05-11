@@ -22,7 +22,7 @@ export class WineEditComponent implements OnInit {
   wineForm!: FormGroup;
   isSubmitted = false;
   isLoading = false;
-  //users: Users[] = [];
+  users: Users[] = [];
 
   constructor(
     private wineService: WineService,
@@ -55,11 +55,11 @@ export class WineEditComponent implements OnInit {
     });
   }
 
-  // loadUsers(): void {
-  //   this.userService.getUsers().subscribe({
-  //     next: users => this.users = users,
-  //   });
-  // }
+  loadUsers(): void {
+    this.userService.getUsers().subscribe({
+      next: users => this.users = users,
+    });
+  }
 
 
   saveWine(): void {
